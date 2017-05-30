@@ -1,9 +1,16 @@
 package com.lotte.juni.clss;
 
-public class User {
-//	String id;
+public class Message {
 	Integer age;
 	Integer gender;
+	String msg;
+	
+	public String getMsg() {
+		return msg;
+	}
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
 	public int getAge() {
 		return age;
 	}

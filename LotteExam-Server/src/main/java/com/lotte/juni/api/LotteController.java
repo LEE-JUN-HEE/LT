@@ -2,17 +2,16 @@ package com.lotte.juni.api;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lotte.juni.clss.User;
+import com.lotte.juni.clss.Message;
 import com.lotte.juni.service.LotteService;
 
 @RestController
 public class LotteController {
 	LotteService service;
 	
-	public User tempUser;
+	public Message tempUser;
 	//소켓작업
 	
 	public LotteController(LotteService service){
@@ -28,13 +27,13 @@ public class LotteController {
 //	}
 	
 	@PostMapping("/init")
-	public String Init(@RequestBody User user){
+	public String Init(@RequestBody Message user){
 		tempUser = user;
-		return String.format("%d세의 %s 고객님! 환영합니다~ 무엇을 도와드릴까요?", tempUser.getAge(), tempUser.getGender() == 0 ? "남성" : "여성");
+		return String.format("%d세의 %s 고객님! 환영합니다~ 저는 챗봇입니다! 무엇을 도와드릴까요?", tempUser.getAge(), tempUser.getGender() == 0 ? "남성" : "여성");
 	}
 	
 	@PostMapping("/mysend")
-	public String Send(@RequestBody String msg){
+	public String Send(@RequestBody Message msg){
 		return service.ChatBotSay(msg);
 	}
 }

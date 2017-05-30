@@ -1,11 +1,12 @@
 #bot{
-    text-align: left;
+    text-align: right;
     align-content: right;
     word-break: break-all;
     padding-left : 50px;
 }
 #bottext{
     word-break: break-all;
+    background-color: aquamarine
 }
 #my{
     text-align: left;
@@ -14,6 +15,7 @@
 }
 #mytext{
     word-break: break-all;
+    background-color: azure
 }
 
 #chat{
@@ -21,8 +23,12 @@
     border-right : 150px;
     border-top : 100px;
     border-bottom : 100px;
-    width: 300px;
+    width: 800px;
     height: 200px;
     overflow: scroll;
     overflow-x: hidden;
+}
+
+#chatinput{
+    width: 800px;
 }
