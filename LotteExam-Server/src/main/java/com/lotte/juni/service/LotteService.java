@@ -45,9 +45,7 @@ public class LotteService {
 				continue;
 			}
 
-			System.out.println(list2[0].trim());
 			if(Good.isType(list2[0].trim())){ // 카테고리
-				System.out.println(list2[0].trim());
 				item.good = new Good(Category.valueOf(list2[0].trim()));
 			}else{	//특정 제품 명
 				item.good = new Good(list[0]);
@@ -66,12 +64,14 @@ public class LotteService {
 	
 	public ArrayList<Good> FindGoods(GoodsAndDo gad){
 		ArrayList<Good> result = new ArrayList<Good>();
+		System.out.println(gad.good.getCategory() + "/" + gad.good.getName());
 		if(gad.good.getCategory() == Category.none){
 			//제품명
 			for(int i =0; i < GoodDao.Database.length; i++)
 				result.add(dao.SearchByName(gad.good.getName(), GoodDao.Database[i]));
 		}else{
 			//카테고리
+			System.out.println(gad.good.getName());
 			for(int i =0; i < GoodDao.Database.length; i++)
 				result.add(dao.SearchByName(gad.good.getName(), GoodDao.Database[i]));
 		}
