@@ -1,0 +1,28 @@
+#bot{
+    text-align: left;
+    align-content: right;
+    word-break: break-all;
+    padding-left : 50px;
+}
+#bottext{
+    word-break: break-all;
+}
+#my{
+    text-align: left;
+    word-break: break-all;
+    padding-right : 50px;
+}
+#mytext{
+    word-break: break-all;
+}
+
+#chat{
+    border-left: 150px;
+    border-right : 150px;
+    border-top : 100px;
+    border-bottom : 100px;
+    width: 300px;
+    height: 200px;
+    overflow: scroll;
+    overflow-x: hidden;
+}

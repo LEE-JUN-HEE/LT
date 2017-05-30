@@ -1,5 +1,5 @@
 package com.lotte.juni.dao;
 
-public class Lotte {
-	
+public class UserDao {
+
 }
