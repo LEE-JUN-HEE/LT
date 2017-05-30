@@ -18,19 +18,17 @@ public class LotteService {
 	public LotteService(GoodDao dao) {
 		this.dao = dao;
 	}
-
-//	public Integer Login(String id) {
-//		return dao.GetCountUser(id);
-//	}
-	
-//	public User Init(String id){
-//		return dao.SelectUser(id);
-//	}
 	
 	public String ChatBotSay(String msg){
+		String result = "";
 		ArrayList<GoodsAndDo> search = Parse(msg);
-		
-		return String.format("%S %S", search.get(0).good.getCategory(), search.get(0).doing.toString());
+		for(int i =0; i < search.size(); i++){
+			ArrayList<Good> queryresult = FindGoods(search.get(i));
+			for(int j =0; j <queryresult.size(); j++){
+				result += ChatBotSaybyGood(queryresult.get(j));
+			}
+		}
+		return result;
 	}
 	
 	public ArrayList<GoodsAndDo> Parse(String msg){
@@ -44,10 +42,6 @@ public class LotteService {
 			String[] list2 = list[i].split("#");
 			
 			if(list2.length < 2){
-//				if(list2[0] != ""){
-//					item.good = new Good(list[0]);
-//					returnvalue.add(item);
-//				} 
 				continue;
 			}
 
@@ -59,18 +53,50 @@ public class LotteService {
 				item.good = new Good(list[0]);
 			}
 			
-			
 			if(list2[1].contains("찾")){
 				item.doing = new Do(Do.Type.valueOf("find"));
 			}else if(list2[i].contains("추천")){
 				item.doing = new Do(Do.Type.valueOf("recommend"));
 			}
-//			for(int j=0; j < returnvalue.size(); j++){
-//				if(returnvalue.s)
-//			}
 			
 			returnvalue.add(item);
 		}
 		return returnvalue;
+	}
+	
+	public ArrayList<Good> FindGoods(GoodsAndDo gad){
+		ArrayList<Good> result = new ArrayList<Good>();
+		if(gad.good.getCategory() == Category.none){
+			//제품명
+			for(int i =0; i < GoodDao.Database.length; i++)
+				result.add(dao.SearchByName(gad.good.getName(), GoodDao.Database[i]));
+		}else{
+			//카테고리
+			for(int i =0; i < GoodDao.Database.length; i++)
+				result.add(dao.SearchByName(gad.good.getName(), GoodDao.Database[i]));
+		}
+		return result;
+	}
+	
+	public ArrayList<Good> RecommendGoods(GoodsAndDo gad){
+		if(gad.good.getCategory() == Category.none){
+			//제품명
+			for(int i =0; i < GoodDao.Database.length; i++)
+				dao.SearchByName(gad.good.getName(), GoodDao.Database[i]);
+		}else{
+			//카테고리
+			for(int i =0; i < GoodDao.Database.length; i++)
+				dao.SearchByCategory(gad.good.getCategory(), GoodDao.Database[i]);
+		}
+		return new ArrayList<Good>();
+	}
+	
+	public String ChatBotSaybyGood(Good good){
+		return String.format("%s에 %s 있네! 가격은 %d고 주소는 %s이야\n", good.getSpace(), good.getName(), good.getPrice(), "http://localhost/index.html" );
+		//아직 연령 안따졌음
+	}
+	
+	public String MappingCategory(){
+		return "";
 	}
 }

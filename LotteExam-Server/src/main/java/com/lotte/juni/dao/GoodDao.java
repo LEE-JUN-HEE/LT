@@ -1,5 +1,7 @@
 package com.lotte.juni.dao;
 
+import java.awt.List;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,18 +17,21 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import com.lotte.juni.clss.Good;
+import com.lotte.juni.clss.Good.Category;
 import com.lotte.juni.clss.User;
 
 @Repository
 public class GoodDao {
 	NamedParameterJdbcOperations jdbc;
-	RowMapper<Good> rowMapperLotte;
+	RowMapper<Good> rowMapperGood;
 	RowMapper<User> rowMapperUser;
 	private SimpleJdbcInsert insertAction;
 	
+	static final public String[] Database ={"dotcom", "mart", "depart"};
+	
 	public GoodDao(DataSource dataSource){
 		jdbc = new NamedParameterJdbcTemplate(dataSource);
-		rowMapperLotte = new BeanPropertyRowMapper<>(Good.class);
+		rowMapperGood = new BeanPropertyRowMapper<>(Good.class);
 		rowMapperUser = new BeanPropertyRowMapper<>(User.class);
 		insertAction = new SimpleJdbcInsert(dataSource);
 	}
@@ -52,8 +57,18 @@ public class GoodDao {
 	}
 	
 	static final String GOOD_SELECT_BY_NAME = "SELECT id, category, name, price, count from :db where name = :name";
-//	public Good SearchByName(String str){
-//		Map<String, String> param = new HashMap();
-//		param.put();
-//	}
+	public Good SearchByName(String name, String db){
+		Map<String, String> param = new HashMap();
+		param.put("db", db);
+		param.put("name", name);
+		return jdbc.queryForObject(GOOD_SELECT_BY_NAME, param, rowMapperGood);
+	}
+	
+	static final String GOOD_SELECT_BY_CATEGORY = "SELECT id, category, name, price, count from :db where category = :category";
+	public java.util.List<Map<String, Object>> SearchByCategory(Category category, String db){
+		Map<String, String> param = new HashMap();
+		param.put("db", db);
+		param.put("category", category.toString());
+		return jdbc.queryForList(GOOD_SELECT_BY_CATEGORY, param);
+	}
 }

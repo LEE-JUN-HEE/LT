@@ -17,7 +17,16 @@ public class Good {
 	String name;
 	Integer price;
 	Integer count;
+	String space;
 	
+	public String getSpace() {
+		return space;
+	}
+
+	public void setSpace(String space) {
+		this.space = space;
+	}
+
 	public static boolean isType(String str){
 		try{
 			return Category.valueOf(str.toLowerCase()) != null;
