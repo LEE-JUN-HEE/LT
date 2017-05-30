@@ -48,7 +48,7 @@ public class LotteService {
 			if(Good.isType(list2[0].trim())){ // 카테고리
 				item.good = new Good(Category.valueOf(list2[0].trim()));
 			}else{	//특정 제품 명
-				item.good = new Good(list[0]);
+				item.good = new Good(list2[0]);
 			}
 			
 			if(list2[1].contains("찾")){

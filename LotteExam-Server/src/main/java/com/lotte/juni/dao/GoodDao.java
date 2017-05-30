@@ -56,9 +56,9 @@ public class GoodDao {
 		return insertAction.executeAndReturnKey(param).intValue();
 	}
 	
-	static final String GOOD_SELECT_BY_NAME = "SELECT id, category, name, price, count from :db where name = :name";
+	static final String GOOD_SELECT_BY_NAME = "SELECT id, category, name, price, count from dotcom where name = :name";
 	public Good SearchByName(String name, String db){
-		Map<String, String> param = new HashMap();
+		Map<String, String> param = new HashMap<String, String>();
 		param.put("db", db);
 		param.put("name", name);
 		return jdbc.queryForObject(GOOD_SELECT_BY_NAME, param, rowMapperGood);
