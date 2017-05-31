@@ -16,9 +16,14 @@ import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
 @PropertySource("application.properties")
+@PropertySource("text.properties")
 @ComponentScan
 @Configuration
 public class Appconfig {
+	public class TextFormat{
+		
+	}
+	
 	@Value("${spring.datasource.url}")
 	String url;
 	@Value("${spring.datasource.driver-class-name}")

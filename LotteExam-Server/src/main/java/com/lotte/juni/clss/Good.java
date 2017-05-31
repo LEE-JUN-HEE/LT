@@ -1,5 +1,7 @@
 package com.lotte.juni.clss;
 
+import java.util.ArrayList;
+
 public class Good {
 	public enum Category{
 		cloth,
@@ -17,14 +19,18 @@ public class Good {
 	String name;
 	Integer price;
 	Integer count;
-	String space;
-	
-	public String getSpace() {
+	ArrayList<String> space;
+
+	public ArrayList<String> getSpace() {
 		return space;
 	}
 
-	public void setSpace(String space) {
+	public void setSpace(ArrayList<String> space) {
 		this.space = space;
+	}
+	
+	public void addSpace(String space){
+		this.space.add(space);
 	}
 
 	public static boolean isType(String str){
@@ -42,6 +48,7 @@ public class Good {
 		this.category = Category.none;
 		this.price = -1;
 		this.count = -1;
+		this.space = new ArrayList<>();
 	}
 	
 	public Good(Category category){
@@ -50,6 +57,7 @@ public class Good {
 		this.category = category;
 		this.price = -1;
 		this.count = -1;
+		this.space = new ArrayList<>();
 	}
 
 	public Good(String name){
@@ -58,6 +66,7 @@ public class Good {
 		this.category = Category.none;
 		this.price = -1;
 		this.count = -1;
+		this.space = new ArrayList<>();
 	}
 	
 	@Override

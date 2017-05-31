@@ -1,21 +1,36 @@
 #bot{
-    text-align: right;
-    align-content: right;
+    margin-top : 3px;
+    margin-bottom : 3px;
+    transform-origin: right;
+    float : right;
     word-break: break-all;
-    padding-left : 50px;
 }
 #bottext{
+    margin-top : 3px;
+    margin-bottom : 3px;
+    transform-origin: right;
     word-break: break-all;
-    background-color: aquamarine
+    background-color: aquamarine;
+    float : right;
+    width : 500px;
+    font-size : 13px;
 }
 #my{
-    text-align: left;
+    margin-top : 3px;
+    margin-bottom : 3px;
+    transform-origin: left;
+    float : left;
     word-break: break-all;
-    padding-right : 50px;
 }
 #mytext{
+    margin-top : 3px;
+    margin-bottom : 3px;
+    transform-origin: left;
     word-break: break-all;
-    background-color: azure
+    background-color: azure;
+    float : left;
+    width : 500px;
+    font-size : 13px;
 }
 
 #chat{
@@ -31,4 +46,8 @@
 
 #chatinput{
     width: 800px;
+}
+
+ul{
+    list-style-type: none;
 }
